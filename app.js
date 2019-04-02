@@ -40,13 +40,14 @@ var firstContentCharacteristicsCar = document.getElementById("first-content-car"
 var count4 = 0;
 var cleanBttn = document.getElementById("cleanBttn");
 var selectMarks = document.getElementById("selectMark");
+var validRegistration;
 
 //EVENTOS
 inptCarYear.addEventListener("change", function () {
     yearCar = inptCarYear.value;
     carCharacteristics = new Car();
     //console.log(carCharacteristics);
-    if (carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
+    if (validRegistration !== false && carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
         generatorCar.addEventListener("click", generatingCar);
     }
 
@@ -56,7 +57,7 @@ inptCarColor.addEventListener("change", function () {
     colorCar = inptCarColor.value;
     carCharacteristics = new Car();
     //console.log(carCharacteristics);
-    if (carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
+    if (validRegistration !== false && carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
         generatorCar.addEventListener("click", generatingCar);
     }
 });
@@ -66,7 +67,7 @@ inptCarYear.addEventListener("keypress", function (e) {
     if (e.keyCode !== 48 && e.keyCode !== 49 && e.keyCode !== 50 && e.keyCode !== 51 && e.keyCode !== 52 && e.keyCode !== 53 && e.keyCode !== 54 && e.keyCode !== 55 && e.keyCode !== 56 && e.keyCode !== 57) {
         e.preventDefault();
     }
-    if (carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
+    if (validRegistration !== false && carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
         generatorCar.addEventListener("click", generatingCar);
     }
 });
@@ -84,24 +85,26 @@ inptRegistration.addEventListener("keypress", function (e) {
 
 inptRegistration.addEventListener("change", function () {
     valRegistrationCar = inptRegistration.value;
-    carCharacteristics = new Car();
-    //console.log(carCharacteristics);
-    if (carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
-        generatorCar.addEventListener("click", generatingCar);
-    }
     var expression = /^[A-ZÑ]{3}[-]{1}[\d]{4}$/;
-    var validRegistration = expression.test(valRegistrationCar);
-    //console.log(validRegistration);
+    validRegistration = expression.test(valRegistrationCar);
     if (validRegistration === false) {
         alert("Matrícula incorrecta, favor de ingresar los datos con el formato correcto");
+        return;
     }
+    carCharacteristics = new Car();
+    //console.log(carCharacteristics);
+    if (validRegistration !== false && carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
+        generatorCar.addEventListener("click", generatingCar);
+    }
+    //console.log(validRegistration);
 });
 
 versionCar.addEventListener("change", function () {
     version = versionCar.value;
     carCharacteristics = new Car();
     //console.log(carCharacteristics);
-    if (carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
+    console.log(validRegistration);
+    if (validRegistration !== false && carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
         generatorCar.addEventListener("click", generatingCar);
     }
 });
@@ -110,7 +113,7 @@ transmitionCar.addEventListener("change", function () {
     transmition = transmitionCar.value;
     carCharacteristics = new Car();
     //console.log(carCharacteristics);
-    if (carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
+    if (validRegistration !== false && carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
         generatorCar.addEventListener("click", generatingCar);
     }
 });
@@ -163,11 +166,11 @@ function markCars() {
         carCharacteristics.precio = "Seleccionar modelo para determinarlo";
         carCharacteristics.impuesto = "Seleccionar modelo para determinarlo";
         //console.log(carCharacteristics.modelo);
-        if (carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
+        if (validRegistration !== false && carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
             generatorCar.addEventListener("click", generatingCar);
         }
     }
-    if (carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
+    if (validRegistration !== false && carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
         generatorCar.addEventListener("click", generatingCar);
     }
 }
@@ -267,7 +270,7 @@ function model() {
         fourth.innerHTML = "Audi R8 (Coupé)";
         fourth.value = "Audi R8";
     }
-    if (carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
+    if (validRegistration !== false && carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
         generatorCar.addEventListener("click", generatingCar);
     }
 }
@@ -276,7 +279,7 @@ function modelCars() {
     modelVal = modelC.value;
     carCharacteristics = new Car();
     //console.log(carCharacteristics);
-    if (carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
+    if (validRegistration !== false && carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
         generatorCar.addEventListener("click", generatingCar);
     }
 }
@@ -284,7 +287,7 @@ function modelCars() {
 function storingMark() {
     var markC = valMark;
     return markC;
-    if (carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
+    if (validRegistration !== false && carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
         generatorCar.addEventListener("click", generatingCar);
     }
 }
@@ -292,7 +295,7 @@ function storingMark() {
 function storingModel() {
     var modelC = modelVal;
     return modelC;
-    if (carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
+    if (validRegistration !== false && carCharacteristics.marca !== undefined && carCharacteristics.modelo !== undefined && carCharacteristics.anio !== undefined && carCharacteristics.color !== undefined && carCharacteristics.matrícula !== undefined && carCharacteristics.impuesto !== "$NaN" && carCharacteristics.precio !== "$NaN" && carCharacteristics.puertas !== undefined && carCharacteristics.tipo !== undefined && carCharacteristics.transmisión !== undefined && carCharacteristics.versión !== undefined && carCharacteristics.llantas === 4) {
         generatorCar.addEventListener("click", generatingCar);
     }
 }
